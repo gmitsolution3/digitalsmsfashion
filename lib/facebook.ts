@@ -6,6 +6,6 @@ export const getFacebookPixelCredential = async () => {
     }
   );
 
-
+  
   return res.json();
 };

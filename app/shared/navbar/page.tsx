@@ -27,7 +27,7 @@ const Navbar = async () => {
         <div className="max-w-7xl mx-auto px-4 py-2 md:py-0">
           <div className="h-10 flex justify-between items-center text-sm">
             <p className="text-gray-600 font-medium hidden md:block">
-              Welcome to {brandInfo.name} - Your Trusted Shop
+              Handcrafted Elegance, Woven with Tradition.
             </p>
             <div className="flex items-center gap-6 ml-auto">
               <NavBarMenu />
