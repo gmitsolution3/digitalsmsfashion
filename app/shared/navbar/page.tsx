@@ -78,9 +78,6 @@ const Navbar = async () => {
       <div className="bg-white border-b border-gray-200">
         <MenuNavbar categories={getAllCategories.data} />
       </div>
-
-      {/* Promotional Marquee */}
-      <MarqueeText text={marqueeText.data.text} />
     </header>
   );
 };
