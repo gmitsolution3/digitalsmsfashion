@@ -51,15 +51,6 @@ const MainPage = async () => {
         <FeaturedProduct />
       </div>
 
-      <div>
-        <div className="my-5">
-          <h1 className="text-xl lg:text-4xl font-bold pl-4 text-center uppercase font-semibold mb-5">Why choice us</h1>
-        </div>
-        <div>
-          <FeaturesSection />
-        </div>
-      </div>
-
       {/* top selling product */}
       <div>
         <TopSellingProduct />

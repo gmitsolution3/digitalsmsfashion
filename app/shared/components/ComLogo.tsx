@@ -6,8 +6,6 @@ export const ComLogo =async () => {
 
    const brandInfoRaw = await getBrandInfo();
 
-
-
   return (
     <Link href="/">
       <div className="hover:cursor-pointer">

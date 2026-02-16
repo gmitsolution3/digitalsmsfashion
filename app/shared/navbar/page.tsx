@@ -11,14 +11,6 @@ import AccountDropdown from "../components/AccountDropdown";
 const Navbar = async () => {
   const getAllCategories = await getCategories();
   const brandInfoRaw = await getBrandInfo();
-  const marqueeText = await getMarquee();
-
-  const brandInfo = {
-    logo: brandInfoRaw?.data?.logo ?? "/placeholder.svg",
-    name: brandInfoRaw?.data?.name ?? "GMIT",
-    phone: brandInfoRaw?.data?.phone ?? "+88001234567",
-    socials: brandInfoRaw?.data?.socials ?? [],
-  };
 
   return (
     <header className="w-full bg-white sticky top-0 z-50 shadow-sm">
@@ -42,41 +34,32 @@ const Navbar = async () => {
       {/* Main Header - Logo, Search, Cart */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between md:py-5 md:py-6 gap-4 md:gap-6">
+          <div className="flex items-center justify-between py-2 md:py-2 gap-4 md:gap-6">
             {/* Logo */}
             <div className="flex-shrink-0">
               <ComLogo />
             </div>
 
-            {/* Search Bar - Desktop */}
-            <div className="hidden lg:flex flex-1 max-w-3xl">
-              <HeaderSearchBar
-                categories={getAllCategories.data}
-                name={brandInfo.name}
-                phone={brandInfo.phone}
-              />
+            {/* Menu Navbar - Hidden on tablet, visible on desktop */}
+            <div className="hidden xl:block flex-1 max-w-3xl">
+              <MenuNavbar categories={getAllCategories.data} />
             </div>
 
-            {/* Cart */}
+            {/* Cart and Mobile Menu Trigger */}
             <div className="flex items-center gap-3">
               <BookCard />
+              {/* Mobile Menu Button - Visible on tablet and below */}
+              <div className="xl:hidden">
+                <MenuNavbar categories={getAllCategories.data} />
+              </div>
             </div>
           </div>
-
-          {/* Search Bar - Mobile */}
-          {/* <div className="lg:hidden pb-4">
-            <HeaderSearchBar
-              categories={getAllCategories.data}
-              name={brandInfo.name}
-              phone={brandInfo.phone}
-            />
-          </div> */}
         </div>
       </div>
 
       {/* Navigation Menu */}
-      <div className="bg-white border-b border-gray-200">
-        <MenuNavbar categories={getAllCategories.data} />
+      <div className="bg-primary border-b border-gray-200 py-3 mb-5 text-center font-semibold text-white">
+        ⚡ DIPONTY CLEARANCE SALE IS LIVE ⚡
       </div>
     </header>
   );

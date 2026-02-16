@@ -6,7 +6,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import { handleWhatsApp } from "./../(public)/shop/components/handleWhatsApp";
 import { createPortal } from "react-dom";
 import ProductVariant from "./../(public)/shop/components/ProductVariants";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const ProductCard = ({ product }: { product: any }) => {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
@@ -102,13 +103,14 @@ const ProductCard = ({ product }: { product: any }) => {
 
         {/* Quick Action Icons - Vertical Right Side */}
         <div className="absolute top-3 right-0 z-20 flex flex-col gap-1 translate-x-full group-hover/product:translate-x-0 transition-transform duration-300">
-          <button
-            onClick={handleViewDwtail}
-            className="bg-white text-gray-700 p-2.5 hover:bg-primary hover:text-white transition-colors border-l border-t border-b border-gray-200"
-            title="Quick View"
-          >
-            <Eye className="w-4 h-4" />
-          </button>
+          <Link href={`/shop/${product.categoryId}/${product.slug}`}>
+            <button
+              className="bg-white text-gray-700 p-2.5 hover:bg-primary hover:text-white transition-colors border-l border-t border-b border-gray-200"
+              title="Quick View"
+            >
+              <Eye className="w-4 h-4" />
+            </button>
+          </Link>
           <button
             onClick={() => setIsFavorite(!isFavorite)}
             className={`p-2.5 transition-colors border-l border-b border-gray-200 ${
@@ -133,11 +135,13 @@ const ProductCard = ({ product }: { product: any }) => {
 
         {/* Product Image */}
         <div className="relative">
-          <img
-            src={product.thumbnail}
-            alt={product.title}
-            className="w-full h-80 object-cover group-hover/product:opacity-90 transition-opacity duration-300"
-          />
+          <Link href={`/shop/${product.categoryId}/${product.slug}`}>
+            <img
+              src={product.thumbnail}
+              alt={product.title}
+              className="w-full h-80 object-cover group-hover/product:opacity-90 transition-opacity duration-300"
+            />
+          </Link>
         </div>
 
         {/* Add to Cart Button - Bottom overlay on hover */}
@@ -161,7 +165,9 @@ const ProductCard = ({ product }: { product: any }) => {
 
         {/* Title */}
         <h3 className="text-gray-900 font-normal text-sm mb-2 line-clamp-2 leading-relaxed min-h-[2.5rem] hover:text-primary transition-colors cursor-pointer">
-          {product.title}
+          <Link href={`/shop/${product.categoryId}/${product.slug}`}>
+            {product.title}
+          </Link>
         </h3>
 
         {/* Description - shows on hover */}

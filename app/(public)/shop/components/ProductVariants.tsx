@@ -91,7 +91,9 @@ export default function ProductVariant({
   const sizes = [...new Set(variants.map((v) => v.attributes.size))];
 
   const [selectedColor, setSelectedColor] = useState(colors[0]);
-  const [selectedSize, setSelectedSize] = useState(sizes[0]);
+  const [selectedSize, setSelectedSize] = useState(sizes[0] || "");
+
+  console.log(sizes)
 
   const productSize = selectedSize.split(",");
 
