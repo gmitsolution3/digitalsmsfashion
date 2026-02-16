@@ -59,7 +59,7 @@ const Navbar = async () => {
 
       {/* Navigation Menu */}
       <div className="bg-primary border-b border-gray-200 py-3 mb-5 text-center font-semibold text-white">
-        ⚡ DIPONTY CLEARANCE SALE IS LIVE ⚡
+        DLS NEW YEAR SALE IS LIVE
       </div>
     </header>
   );
