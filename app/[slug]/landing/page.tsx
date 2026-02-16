@@ -3,7 +3,6 @@ import { getProductDetails } from "@/lib/products";
 import ProductHero from "./ProductThumbnail";
 import ProductFeatures from "./ProductFeature";
 import ProductSpecs from "./ProductSpecs";
-import Footer from "./Footer";
 import Header from "./Header";
 
 export default async function ProductLanding({
