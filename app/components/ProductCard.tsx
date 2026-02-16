@@ -80,7 +80,7 @@ const ProductCard = ({ product }: { product: any }) => {
   };
 
   return (
-    <div className="group/product bg-white overflow-hidden hover:shadow-lg transition-all duration-300 relative border border-gray-200">
+    <div className="group/product bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300 relative border border-gray-200">
       {/* Image Container */}
       <div className="relative overflow-hidden bg-white">
         {/* Discount Badge */}
@@ -105,7 +105,7 @@ const ProductCard = ({ product }: { product: any }) => {
         <div className="absolute top-3 right-0 z-20 flex flex-col gap-1 translate-x-full group-hover/product:translate-x-0 transition-transform duration-300">
           <Link href={`/shop/${product.categoryId}/${product.slug}`}>
             <button
-              className="bg-white text-gray-700 p-2.5 hover:bg-primary hover:text-white transition-colors border-l border-t border-b border-gray-200"
+              className="bg-white text-gray-700 p-2.5 hover:bg-primary hover:text-white transition-colors duration-300 border-l border-t border-b border-gray-200"
               title="Quick View"
             >
               <Eye className="w-4 h-4" />
@@ -113,7 +113,7 @@ const ProductCard = ({ product }: { product: any }) => {
           </Link>
           <button
             onClick={() => setIsFavorite(!isFavorite)}
-            className={`p-2.5 transition-colors border-l border-b border-gray-200 ${
+            className={`p-2.5 transition-colors duration-300 border-l border-b border-gray-200 ${
               isFavorite
                 ? "bg-red-500 text-white"
                 : "bg-white text-gray-700 hover:bg-primary hover:text-white"
@@ -126,7 +126,7 @@ const ProductCard = ({ product }: { product: any }) => {
           </button>
           <button
             onClick={() => handleWhatsApp()}
-            className="bg-white text-gray-700 p-2.5 hover:bg-green-500 hover:text-white transition-colors border-l border-b border-gray-200"
+            className="bg-white text-gray-700 p-2.5 hover:bg-green-500 hover:text-white transition-colors duration-300 border-l border-b border-gray-200"
             title="WhatsApp"
           >
             <FaWhatsapp className="w-4 h-4" />
@@ -134,7 +134,7 @@ const ProductCard = ({ product }: { product: any }) => {
         </div>
 
         {/* Product Image */}
-        <div className="relative">
+        <div className="relative overflow-hidden">
           <Link href={`/shop/${product.categoryId}/${product.slug}`}>
             <img
               src={product.thumbnail}
@@ -145,10 +145,10 @@ const ProductCard = ({ product }: { product: any }) => {
         </div>
 
         {/* Add to Cart Button - Bottom overlay on hover */}
-        <div className="absolute bottom-0 left-0 right-0 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-0 left-0 right-0 opacity-0 pointer-events-none group-hover/product:opacity-100 group-hover/product:pointer-events-auto transition-opacity duration-500">
           <button
             onClick={handleAddToCart}
-            className="w-full bg-primary text-white py-3 text-sm font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-primary text-white py-3 text-sm font-semibold hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center gap-2"
           >
             <ShoppingCart className="w-4 h-4" />
             Add to Cart
@@ -164,7 +164,7 @@ const ProductCard = ({ product }: { product: any }) => {
         </div>
 
         {/* Title */}
-        <h3 className="text-gray-900 font-normal text-sm mb-2 line-clamp-2 leading-relaxed min-h-[2.5rem] hover:text-primary transition-colors cursor-pointer">
+        <h3 className="text-gray-900 font-normal text-sm mb-2 line-clamp-2 leading-relaxed min-h-[2.5rem] hover:text-primary transition-colors duration-300 cursor-pointer">
           <Link href={`/shop/${product.categoryId}/${product.slug}`}>
             {product.title}
           </Link>
@@ -190,16 +190,16 @@ const ProductCard = ({ product }: { product: any }) => {
         </div>
 
         {/* Bottom Actions - Shows on hover */}
-        <div className="flex gap-2 h-0 opacity-0 overflow-hidden group-hover/product:h-auto group-hover/product:opacity-100 transition-all duration-300">
+        <div className="flex gap-2 max-h-0 opacity-0 overflow-hidden group-hover/product:max-h-20 group-hover/product:opacity-100 transition-all duration-500">
           <button
             onClick={handleBuyNow}
-            className="flex-1 bg-primary text-white py-2 text-xs font-semibold hover:bg-primary/90 transition-colors"
+            className="flex-1 bg-primary text-white py-2 text-xs font-semibold hover:bg-primary/90 transition-colors duration-300"
           >
             Order Now
           </button>
           <button
             onClick={() => handleWhatsApp()}
-            className="bg-green-500 text-white px-3 py-2 text-xs hover:bg-green-600 transition-colors"
+            className="bg-green-500 text-white px-3 py-2 text-xs hover:bg-green-600 transition-colors duration-300"
           >
             <FaWhatsapp className="w-4 h-4" />
           </button>
