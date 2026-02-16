@@ -111,7 +111,7 @@ export const LoginForm = () => {
                   Login
                 </h1>
                 <p className="text-gray-500 text-sm mt-2">
-                  Welcome back to Yellow Furniture
+                  Welcome back to Digital SMS Fashion!
                 </p>
               </div>
 

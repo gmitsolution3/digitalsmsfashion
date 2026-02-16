@@ -46,7 +46,7 @@ export const BookCard = () => {
           onClick={() => setSearchOpen(true)}
           className="p-2 hover:bg-gray-100 rounded-full transition-colors"
         >
-          <Search className="w-5 h-5 text-gray-700" />
+          <Search className="w-4 h-4 lg:w-5 lg:h-5 text-gray-700" />
         </button>
 
         {/* Cart Button */}
@@ -55,7 +55,7 @@ export const BookCard = () => {
             <div className="flex items-center gap-2 px-3 py-2 rounded transition-all duration-200">
               {/* Cart Icon with Badge */}
               <div className="relative">
-                <HiOutlineShoppingBag className="w-8 h-8 text-gray-700 group-hover:text-primary transition-colors duration-200" />
+                <HiOutlineShoppingBag className="w-6 h-6 lg:w-8 lg:h-8 text-gray-700 group-hover:text-primary transition-colors duration-200" />
 
                 <span className="absolute top-1 -right-1 w-4 h-4 bg-gradient-to-br from-primary to-primary/90 text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-md">
                   {cartItems?.length > 9 ? "9+" : cartItems?.length}

@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Crab Fashion BD",
-  description: "Build your trust",
+  title: "Digital SMS Fashion",
+  description: "Handcrafted Elegance, Woven with Tradition.",
 };
 
 
