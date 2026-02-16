@@ -341,7 +341,7 @@ export default function ProductVariant({
             {/* Add to cart */}
             <button
               onClick={() => handleAddToCart()}
-              className="flex items-center gap-2 px-4 py-2 border text-primary-foreground border-primary rounded-lg hover:cursor-pointer hover:bg-primary hover:text-white"
+              className="flex items-center gap-2 px-4 py-2 border text-white border-primary rounded-lg hover:cursor-pointer hover:bg-primary hover:text-white font-medium bg-primary"
             >
               <ShoppingCart size={18} /> Add to Cart
             </button>
@@ -358,7 +358,7 @@ export default function ProductVariant({
             {/* Buy Now */}
             <button
               onClick={handleBuyNow}
-              className="px-5 py-2 bg-linear-to-t from-primary to-primary-foreground text-white rounded-lg font-semibold hover:opacity-90 hover:from-primary-foreground hover:cursor-pointer hover:to-primary"
+              className="w-full px-5 py-2 bg-linear-to-r from-primary to-primary/90 text-white rounded-lg font-semibold hover:opacity-90 hover:cursor-pointer"
             >
               Buy Now
             </button>
