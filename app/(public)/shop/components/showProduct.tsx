@@ -9,6 +9,7 @@ import { CardButtons } from "./cardButtons";
 import ProductSingleCard from "./../../../components/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
+import { useRouter } from "next/navigation";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -57,14 +58,27 @@ const CategoryCarousel = ({
 }) => {
   if (products.length === 0) return null;
 
+  const router = useRouter();
+
   const minSlidesForLoop = 5; // You can adjust this number
   const shouldLoop = products.length >= minSlidesForLoop;
 
   return (
     <section className="w-full">
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-8 text-center md:text-left font-semibold uppercase">
-        {categoryName}
-      </h2>
+      <div className="bg-gradient-to-tr from-primary via-primary/80 to-primary/70 rounded-md p-3 mb-8 flex flex-col md:flex-row items-center justify-between">
+        <h2 className="text-2xl md:text-2xl font-bold text-white text-center md:text-left font-semibold uppercase">
+          {categoryName} sharee
+        </h2>
+
+        <button
+          onClick={() =>
+            router.push(`/shop/${products[0].categoryId}`)
+          }
+          className="w-full md:w-auto bg-white text-primary p-2 rounded font-medium shadow mt-5 lg:mt-0"
+        >
+          View More
+        </button>
+      </div>
 
       {/* Carousel */}
       <div className="relative group">

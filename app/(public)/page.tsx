@@ -57,12 +57,12 @@ const MainPage = async () => {
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="my-5 border-b-2 border-b-gray-300 pb-3">
+        {/* <div className="my-5 border-b-2 border-b-gray-300 pb-3">
           <h1 className="text-xl lg:text-4xl font-bold pl-4 text-start uppercase font-semibold mb-5">Find your best one</h1>
           <p className="pl-4 text-gray-700">
             We provide our best quality
           </p>
-        </div>
+        </div> */}
 
         {products.length === 0 ? (
           <div className="min-h-screen flex justify-center items-center text-3xl text-primary">
@@ -70,7 +70,6 @@ const MainPage = async () => {
           </div>
         ) : (
           <div>
-            {/* <ProductCard products={products} /> */}
             <ShowProduct products={products} />
           </div>
         )}
