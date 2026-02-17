@@ -2,34 +2,43 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight, ChevronLeft } from "lucide-react";
 
 export const MenuNavbar = ({ categories }: any) => {
   const [activeCategory, setActiveCategory] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
   const moreDropdownRef = useRef<HTMLDivElement>(null);
 
-  const CATEGORY_SLOTS = 3; // Show 3 categories + Home + All Products = 5 total
+  const CATEGORY_SLOTS = 5; // Show 5 categories + Home + All Products = 7 total
 
   const visibleCategories =
-    categories?.slice(0, CATEGORY_SLOTS) || [];
-  const moreCategories = categories?.slice(CATEGORY_SLOTS) || [];
-  const hasMoreItems = moreCategories.length > 0;
+    categories?.slice(scrollOffset, scrollOffset + CATEGORY_SLOTS) ||
+    [];
+  const hasMoreItems =
+    scrollOffset + CATEGORY_SLOTS < (categories?.length || 0);
 
   const handleClick = (id: string) => {
     setActiveCategory(id);
     setIsOpen(false);
-    setIsMoreOpen(false);
   };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggleMoreDropdown = (e: React.MouseEvent) => {
+  const handleNextClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsMoreOpen(!isMoreOpen);
+    if (hasMoreItems) {
+      setScrollOffset(scrollOffset + 1);
+    }
+  };
+
+  const handlePrevClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (scrollOffset > 0) {
+      setScrollOffset(scrollOffset - 1);
+    }
   };
 
   useEffect(() => {
@@ -37,22 +46,6 @@ export const MenuNavbar = ({ categories }: any) => {
     const segments = path.split("/").filter(Boolean);
     const lastSegment = segments[segments.length - 1] || "home";
     setActiveCategory(lastSegment);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        moreDropdownRef.current &&
-        !moreDropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsMoreOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
   }, []);
 
   return (
@@ -63,7 +56,7 @@ export const MenuNavbar = ({ categories }: any) => {
         <Link href="/">
           <button
             onClick={() => handleClick("home")}
-            className="relative px-3 py-2 text-base font-semibold uppercase text-gray-700 hover:text-primary transition-colors duration-200 group"
+            className="relative px-3 py-2 text-base font-semibold uppercase text-gray-700 hover:text-primary transition-colors duration-200 group whitespace-nowrap"
           >
             <span
               className={
@@ -86,7 +79,7 @@ export const MenuNavbar = ({ categories }: any) => {
         <Link href="/shop/all">
           <button
             onClick={() => handleClick("all")}
-            className="relative px-3 py-2 text-base font-semibold uppercase text-gray-700 hover:text-primary transition-colors duration-200 group"
+            className="relative px-3 py-2 text-base font-semibold uppercase text-gray-700 hover:text-primary transition-colors duration-200 group whitespace-nowrap"
           >
             <span
               className={
@@ -105,12 +98,23 @@ export const MenuNavbar = ({ categories }: any) => {
           </button>
         </Link>
 
-        {/* Visible Categories (First 3) */}
+        {/* Previous Categories Scroll Arrow */}
+        {scrollOffset > 0 && (
+          <button
+            onClick={handlePrevClick}
+            className="px-2 py-2 text-gray-700 hover:text-primary transition-colors duration-200"
+            title="Show previous categories"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+        )}
+
+        {/* Visible Categories */}
         {visibleCategories.map((category: any) => (
           <Link key={category._id} href={`/shop/${category._id}`}>
             <button
               onClick={() => handleClick(category._id)}
-              className="relative px-3 py-2 text-base font-semibold uppercase text-gray-700 hover:text-primary transition-colors duration-200 group capitalize"
+              className="relative px-3 py-2 text-base font-semibold uppercase text-gray-700 hover:text-primary transition-colors duration-200 group capitalize whitespace-nowrap"
             >
               <span
                 className={
@@ -132,39 +136,15 @@ export const MenuNavbar = ({ categories }: any) => {
           </Link>
         ))}
 
-        {/* More Categories Dropdown */}
+        {/* More Categories Scroll Arrow */}
         {hasMoreItems && (
-          <div ref={moreDropdownRef} className="relative">
-            <button
-              onClick={toggleMoreDropdown}
-              className="relative px-3 py-2 text-base font-semibold uppercase text-gray-700 hover:text-primary transition-colors duration-200 group"
-            >
-              <span>...</span>
-            </button>
-
-            {/* Dropdown Menu */}
-            {isMoreOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 min-w-max">
-                {moreCategories.map((category: any) => (
-                  <Link
-                    href={`/shop/${category._id}`}
-                    key={category._id}
-                  >
-                    <button
-                      onClick={() => handleClick(category._id)}
-                      className={`block w-full text-left px-4 py-2 text-sm font-semibold transition-all duration-200 capitalize ${
-                        activeCategory === category._id
-                          ? "bg-primary text-white"
-                          : "text-gray-700 hover:bg-gray-100"
-                      }`}
-                    >
-                      {category.name}
-                    </button>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+          <button
+            onClick={handleNextClick}
+            className="px-2 py-2 text-gray-700 hover:text-primary transition-colors duration-200"
+            title="Show more categories"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         )}
       </nav>
 
