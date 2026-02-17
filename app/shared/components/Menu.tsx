@@ -109,32 +109,41 @@ export const MenuNavbar = ({ categories }: any) => {
           </button>
         )}
 
-        {/* Visible Categories */}
-        {visibleCategories.map((category: any) => (
-          <Link key={category._id} href={`/shop/${category._id}`}>
-            <button
-              onClick={() => handleClick(category._id)}
-              className="relative px-3 py-2 text-base font-semibold uppercase text-gray-700 hover:text-primary transition-colors duration-200 group capitalize whitespace-nowrap"
-            >
-              <span
-                className={
-                  activeCategory === category._id
-                    ? "text-primary"
-                    : ""
-                }
-              >
-                {category.name}
-              </span>
-              <span
-                className={`absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
-                  activeCategory === category._id
-                    ? "scale-x-100"
-                    : "scale-x-0 group-hover:scale-x-100"
-                }`}
-              />
-            </button>
-          </Link>
-        ))}
+        {/* Visible Categories Container */}
+        <div className="flex items-center gap-1 overflow-hidden">
+          <div
+            className="flex items-center gap-1 transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(0)`,
+            }}
+          >
+            {visibleCategories.map((category: any) => (
+              <Link key={category._id} href={`/shop/${category._id}`}>
+                <button
+                  onClick={() => handleClick(category._id)}
+                  className="relative px-3 py-2 text-base font-semibold uppercase text-gray-700 hover:text-primary transition-colors duration-200 group capitalize whitespace-nowrap"
+                >
+                  <span
+                    className={
+                      activeCategory === category._id
+                        ? "text-primary"
+                        : ""
+                    }
+                  >
+                    {category.name}
+                  </span>
+                  <span
+                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
+                      activeCategory === category._id
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  />
+                </button>
+              </Link>
+            ))}
+          </div>
+        </div>
 
         {/* More Categories Scroll Arrow */}
         {hasMoreItems && (
